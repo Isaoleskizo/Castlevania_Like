@@ -17,6 +17,8 @@ public class CharacterControler : MonoBehaviour
     private SecondaryWeapon weapon = SecondaryWeapon.Dagger;
     private Vector2 positionWeapon;
     public GameObject prefabProjectile;
+    public Transform parentProjectiles;
+
 
     [Header("Deplacements")]
     private Rigidbody2D rb2;
@@ -52,17 +54,14 @@ public class CharacterControler : MonoBehaviour
         {
             Jump();
         }
-
         if(Input.GetKeyDown(KeyCode.E))
         {
             Attack();
         }
-
-        if(Input.GetKeyDown(KeyCode.A))
+        if(Input.GetKeyDown(KeyCode.Q))
         {
             UseSecondaryWeapon();
         }
-
         rb2.velocity = velocity;
     }
 
@@ -74,19 +73,27 @@ public class CharacterControler : MonoBehaviour
             case SecondaryWeapon.Dagger:
                 UseDagger();
                 break;
+            case SecondaryWeapon.Axe:
+                Debug.Log("pas implémenté");
+                break;
+            case SecondaryWeapon.None:
+                Debug.Log("None");
+                break;
             default:
-                Debug.Log("rien");
+                Debug.Log("bug");
                 break;
         }
     }
-
-
     private void UseDagger()
     {
+        GameObject dagger;
+        int value = 1;
         Debug.Log("Dague");
-        Instantiate(prefabProjectile, positionWeapon, Quaternion.Euler(0,0,90),transform);
+        if (isLookingLeft) value = -1;
+        else value = 1;
+        dagger = Instantiate(prefabProjectile, transform.position + new Vector3(value*0.5f, 0), Quaternion.Euler(0, 0, 90), parentProjectiles);
+        dagger.GetComponent<ProjectileBehaviour>().isLeft = isLookingLeft;
     }
-
     private void GetDirection()
     {
         movement = Input.GetAxis("Horizontal");
@@ -99,7 +106,6 @@ public class CharacterControler : MonoBehaviour
 
         velocity = new Vector2(movement * speed, rb2.velocity.y);
     }
-
     private void Attack()
     {
         whisp.transform.localPosition = positionWeapon;
@@ -111,7 +117,6 @@ public class CharacterControler : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         whisp.SetActive(false);
     }
-
     private void Jump()
     {
         velocity.y = 7f; ;
@@ -136,7 +141,6 @@ public class CharacterControler : MonoBehaviour
         manaPoints -= mana;
         if(manaPoints < 0) manaPoints = 0;
     }
-
     public void DegatsSubits(bool left)
     {
         _iframes = true;
@@ -154,13 +158,10 @@ public class CharacterControler : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         _iframes = false;
     }
-
-
     public void SwapWeapon(SecondaryWeapon x)
     {
         weapon = x;
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Terrain"))
