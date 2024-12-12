@@ -72,14 +72,13 @@ public class CharacterControler : MonoBehaviour
     {
         if(!weaponCooldown)
         { 
-            GameObject Sweapon;
-            switch(weapon)
+             switch(weapon)
             {
                 case SecondaryWeapon.Dagger:
-                    UseDagger();
+                    UseWeapon(prefabDagger);
                     break;
                 case SecondaryWeapon.Axe:
-                    UseAxe();
+                    UseWeapon(prefabAxe);
                     break;
                 case SecondaryWeapon.None:
                     Debug.Log("None");
@@ -97,24 +96,17 @@ public class CharacterControler : MonoBehaviour
         yield return new WaitForSeconds(time);
         weaponCooldown = false;
     }
-    private void UseAxe()
+    private void UseWeapon(GameObject prefab)
     {
-        GameObject axe;
-        int value;
-        if (isLookingLeft) value = -1;
-        else value = 1;
-        axe = Instantiate(prefabAxe, new Vector3(transform.position.x + value*0.5f, transform.position.y), Quaternion.identity, parentProjectiles);
+        int value = isLookingLeft? -1:1;
+        GameObject axe = Instantiate(prefab, new Vector3(transform.position.x + value*0.5f, transform.position.y), Quaternion.identity, parentProjectiles);
         axe.GetComponent<ProjectileBehaviour>().SetLeft(isLookingLeft);
 
     }
-    private void UseDagger()
+
+    public void ChangeGroundState(bool b)
     {
-        GameObject dagger;
-        int value;
-        if (isLookingLeft) value = -1;
-        else value = 1;
-        dagger = Instantiate(prefabDagger, new Vector3(transform.position.x + value*0.5f, transform.position.y), Quaternion.Euler(0, 0, 90), parentProjectiles);
-        dagger.GetComponent<ProjectileBehaviour>().SetLeft(isLookingLeft);
+        _isOnGround = b;
     }
     private void GetDirection()
     {
@@ -143,7 +135,7 @@ public class CharacterControler : MonoBehaviour
     {
         velocity.y = 7f; ;
     }
-    public void GainHPs(float life)
+/*    public void GainHPs(float life)
     {
         lifePoints += life;
         if(lifePoints>lifePointsMax) lifePoints=lifePointsMax;
@@ -180,22 +172,11 @@ public class CharacterControler : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         _iframes = false;
     }
+*/
     public void SwapWeapon(SecondaryWeapon x)
     {
         weapon = x;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.transform.CompareTag("Terrain"))
-        {
-            _isOnGround= true;
-        }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.transform.CompareTag("Terrain"))
-        {
-            _isOnGround = false;
-        }
-    }
+
+
 }

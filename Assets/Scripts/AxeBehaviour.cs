@@ -7,9 +7,13 @@ public class AxeBehaviour : ProjectileBehaviour
 {
     private float initialXWhenShoot;
     private float initialYWhenShoot;
+
+    private Transform parent;
     // Start is called before the first frame update
     void Start()
     {
+        parent = transform.parent;
+        isAllyProjectile = true;
         speed = 4;
         initialXWhenShoot = transform.position.x;
         initialYWhenShoot = transform.position.y;
@@ -24,10 +28,16 @@ public class AxeBehaviour : ProjectileBehaviour
 
     protected override void Deplacement()
     {
+        //calcule la position actuelle de X par rapport à la fonction
         float currentX = transform.position.x - initialXWhenShoot;
+        float currentY = transform.position.y - initialYWhenShoot;
+        //verifie le sens dans lequel la fonction s'applique
         int direction = isLeft ? -1 : 1;
+        //fonction f(x) = 1/2 * x² + 3x
         float objectiveY = -0.5f * currentX * (currentX - (direction * 6));
-        transform.Translate(new Vector3(speed * direction * Time.deltaTime, objectiveY - transform.position.y + initialYWhenShoot));
+
+        //Je ne comprends pas "objectiveY - transform.position.y + initialYWhenShoot 
+        transform.Translate(new Vector3(speed * direction * Time.deltaTime, objectiveY - currentY));
 
     }
 
