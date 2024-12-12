@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CharacterControler : MonoBehaviour
@@ -14,9 +15,10 @@ public class CharacterControler : MonoBehaviour
 
     [Header("Armes")]
     private GameObject whisp;
-    private SecondaryWeapon weapon = SecondaryWeapon.Dagger;
+    public SecondaryWeapon weapon = SecondaryWeapon.None;
     private Vector2 positionWeapon;
-    public GameObject prefabProjectile;
+    public GameObject prefabDagger;
+    public GameObject prefabAxe;
     public Transform parentProjectiles;
 
 
@@ -28,7 +30,7 @@ public class CharacterControler : MonoBehaviour
     private bool _isOnGround=false;
     private bool _iframes = false;
     private bool isLookingLeft = true;
-
+    private bool weaponCooldown = false;
 
 
 
@@ -68,31 +70,51 @@ public class CharacterControler : MonoBehaviour
 
     private void UseSecondaryWeapon()
     {
-        switch(weapon)
-        {
-            case SecondaryWeapon.Dagger:
-                UseDagger();
-                break;
-            case SecondaryWeapon.Axe:
-                Debug.Log("pas implémenté");
-                break;
-            case SecondaryWeapon.None:
-                Debug.Log("None");
-                break;
-            default:
-                Debug.Log("bug");
-                break;
+        if(!weaponCooldown)
+        { 
+            GameObject Sweapon;
+            switch(weapon)
+            {
+                case SecondaryWeapon.Dagger:
+                    UseDagger();
+                    break;
+                case SecondaryWeapon.Axe:
+                    UseAxe();
+                    break;
+                case SecondaryWeapon.None:
+                    Debug.Log("None");
+                    break;
+                default:
+                    Debug.Log("bug");
+                    break;
+            }
+            StartCoroutine(CooldownWeapon(0.5f));
         }
+    }
+    IEnumerator CooldownWeapon(float time)
+    {
+        weaponCooldown = true;
+        yield return new WaitForSeconds(time);
+        weaponCooldown = false;
+    }
+    private void UseAxe()
+    {
+        GameObject axe;
+        int value;
+        if (isLookingLeft) value = -1;
+        else value = 1;
+        axe = Instantiate(prefabAxe, new Vector3(transform.position.x + value*0.5f, transform.position.y), Quaternion.identity, parentProjectiles);
+        axe.GetComponent<ProjectileBehaviour>().SetLeft(isLookingLeft);
+
     }
     private void UseDagger()
     {
         GameObject dagger;
-        int value = 1;
-        Debug.Log("Dague");
+        int value;
         if (isLookingLeft) value = -1;
         else value = 1;
-        dagger = Instantiate(prefabProjectile, transform.position + new Vector3(value*0.5f, 0), Quaternion.Euler(0, 0, 90), parentProjectiles);
-        dagger.GetComponent<ProjectileBehaviour>().isLeft = isLookingLeft;
+        dagger = Instantiate(prefabDagger, new Vector3(transform.position.x + value*0.5f, transform.position.y), Quaternion.Euler(0, 0, 90), parentProjectiles);
+        dagger.GetComponent<ProjectileBehaviour>().SetLeft(isLookingLeft);
     }
     private void GetDirection()
     {
