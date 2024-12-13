@@ -10,7 +10,7 @@ public abstract class Enemy : MonoBehaviour
     protected float speed;
     public bool hasDetected;
 
-
+    public List<GameObject> potentialLoot;
 
     // Update is called once per frame
     void Update()
@@ -30,10 +30,18 @@ public abstract class Enemy : MonoBehaviour
 
     protected void Die()
     {
-        //Chance de Loot
+        TryToLoot();
 
         Destroy(gameObject);
     }
+
+    protected virtual void TryToLoot()
+    {
+        int x = Random.Range(0, potentialLoot.Count+1);
+        Debug.Log(x);
+        Instantiate(potentialLoot[x], transform.position, Quaternion.identity);
+    }
+
 
     protected IEnumerator DMGFeedback()
     {

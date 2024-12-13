@@ -9,9 +9,9 @@ public abstract class PowerUpBase : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("bite");
-        if(collision.transform.CompareTag("Character"))
+        if(collision.collider.CompareTag("Character"))
         {
+            Debug.Log(collision);
             CharacterControler cc = collision.transform.GetComponent<CharacterControler>();
             ApplyPowerup(cc);
             Destroy(gameObject);

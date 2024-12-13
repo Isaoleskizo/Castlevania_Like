@@ -380,6 +380,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8404442584411321562, guid: cf44d5106d51a6e47be6dc70a10a3a26, type: 3}
+      propertyPath: potentialLoot.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404442584411321562, guid: cf44d5106d51a6e47be6dc70a10a3a26, type: 3}
+      propertyPath: potentialLoot.Array.data[0]
+      value: 
+      objectReference: {fileID: 982723003476861220, guid: 005747ddf2f6269489816208e8342ebf, type: 3}
+    - target: {fileID: 8404442584411321562, guid: cf44d5106d51a6e47be6dc70a10a3a26, type: 3}
+      propertyPath: potentialLoot.Array.data[1]
+      value: 
+      objectReference: {fileID: 6611483114086385628, guid: dbd21868e7f3d714395a178a6ac093d3, type: 3}
+    - target: {fileID: 8404442584411321562, guid: cf44d5106d51a6e47be6dc70a10a3a26, type: 3}
+      propertyPath: potentialLoot.Array.data[2]
+      value: 
+      objectReference: {fileID: 4115776831356336293, guid: 1081c4ae0bcfe9b4683a913f7e146f93, type: 3}
+    - target: {fileID: 8404442584411321562, guid: cf44d5106d51a6e47be6dc70a10a3a26, type: 3}
+      propertyPath: potentialLoot.Array.data[3]
+      value: 
+      objectReference: {fileID: 2630255226222089230, guid: 3cfed4a8dbe6cab448eee1351807ebe8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

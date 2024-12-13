@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7184523751432671037}
   m_Layer: 0
   m_Name: ProjectileAxe
-  m_TagString: Projectile
+  m_TagString: AllyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
