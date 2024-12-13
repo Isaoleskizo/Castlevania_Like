@@ -28,9 +28,12 @@ public class CharacterControler : MonoBehaviour
     private float movement;
     private float speed = 5.0f;
     private bool _isOnGround=false;
-    private bool _iframes = false;
     private bool isLookingLeft = true;
     private bool weaponCooldown = false;
+
+    [Header("Damage")]
+    private bool _iframes = false;
+    public GameObject shield;
 
 
 
@@ -104,6 +107,11 @@ public class CharacterControler : MonoBehaviour
 
     }
 
+    public bool Get_iframes()
+    {
+        return _iframes;
+    }
+
     public void ChangeGroundState(bool b)
     {
         _isOnGround = b;
@@ -123,6 +131,7 @@ public class CharacterControler : MonoBehaviour
     private void Attack()
     {
         whisp.transform.localPosition = positionWeapon;
+        whisp.GetComponent<WeaponBase>().SetLeft(isLookingLeft);
         whisp.SetActive(true);
         StartCoroutine(ActiveTimeWeapon());
     }
@@ -135,15 +144,22 @@ public class CharacterControler : MonoBehaviour
     {
         velocity.y = 7f; ;
     }
-/*    public void GainHPs(float life)
-    {
-        lifePoints += life;
-        if(lifePoints>lifePointsMax) lifePoints=lifePointsMax;
-    }
+
     public void LoseHPs(float life)
     {
         lifePoints -= life;
-        if(lifePoints < 0) lifePoints = 0;
+        if (lifePoints < 0) lifePoints = 0;
+        StartCoroutine(Cooldown_iFrames());
+    }
+
+
+
+
+
+    public void GainHPs(float life)
+    {
+        lifePoints += life;
+        if(lifePoints>lifePointsMax) lifePoints=lifePointsMax;
     }
     public void GainMana(float mana)
     {
@@ -155,24 +171,15 @@ public class CharacterControler : MonoBehaviour
         manaPoints -= mana;
         if(manaPoints < 0) manaPoints = 0;
     }
-    public void DegatsSubits(bool left)
-    {
-        _iframes = true;
-        StartCoroutine(Cooldown_iFrames());
-
-        if(left)
-        {
-            velocity += Vector2.left;
-        }
-        else velocity += Vector2.right;
-
-    }
     IEnumerator Cooldown_iFrames()
     {
-        yield return new WaitForSeconds(0.25f);
+        _iframes = true;
+        shield.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         _iframes = false;
+        shield.SetActive(false);
     }
-*/
+
     public void SwapWeapon(SecondaryWeapon x)
     {
         weapon = x;

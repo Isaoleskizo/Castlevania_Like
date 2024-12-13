@@ -12,7 +12,6 @@ public class DetectGroundCharacter : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("bip");
         if (collision.transform.CompareTag("Terrain"))
         {
             cc.ChangeGroundState(true);

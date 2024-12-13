@@ -8,7 +8,7 @@ public class DagueBehaviour : ProjectileBehaviour
 
     private void Start()
     {
-        isAllyProjectile = true;
+        damage = 1.0f;
         speed = 10.0f;
     }
     private void FixedUpdate()

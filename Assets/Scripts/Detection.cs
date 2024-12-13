@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Detection : MonoBehaviour
 {
+    /*
     private Enemy enemy;
 
     private void Awake()
@@ -19,5 +20,5 @@ public class Detection : MonoBehaviour
             enemy.player = collision.GetComponent<CharacterControler>();
             enemy.InitDetection();
         }
-    }
+    }*/
 }

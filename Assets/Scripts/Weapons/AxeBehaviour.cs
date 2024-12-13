@@ -12,8 +12,8 @@ public class AxeBehaviour : ProjectileBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damage = 5.0f;
         parent = transform.parent;
-        isAllyProjectile = true;
         speed = 4;
         initialXWhenShoot = transform.position.x;
         initialYWhenShoot = transform.position.y;

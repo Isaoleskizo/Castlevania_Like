@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ProjectileBehaviour : MonoBehaviour
+public abstract class WeaponBase : MonoBehaviour
 {
-    protected bool isAllyProjectile;
     protected bool isLeft;
-    protected float speed = 10.0f;
+    protected float damage = 1.0f;
 
-    protected abstract void Deplacement();
-
+    public float GetDamageValue()
+    {
+        return damage;
+    }
     public void SetLeft(bool l)
     {
         isLeft = l;

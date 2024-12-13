@@ -529,29 +529,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 803495712}
     m_Modifications:
     - target: {fileID: -2534305608707758999, guid: 2d332334198b6934bba7c3413e92d2ff, type: 3}
-      propertyPath: weapon
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -2534305608707758999, guid: 2d332334198b6934bba7c3413e92d2ff, type: 3}
-      propertyPath: prefabAxe
-      value: 
-      objectReference: {fileID: 3407973886738307947, guid: 0cdb269ba96b8694ba8d50f86a5545d3, type: 3}
-    - target: {fileID: -2534305608707758999, guid: 2d332334198b6934bba7c3413e92d2ff, type: 3}
-      propertyPath: prefabDagger
-      value: 
-      objectReference: {fileID: 6336943708259534223, guid: de8d7fd633ca41e40b7d8fb8fbe3b0e9, type: 3}
-    - target: {fileID: -2534305608707758999, guid: 2d332334198b6934bba7c3413e92d2ff, type: 3}
-      propertyPath: prefabProjectile
-      value: 
-      objectReference: {fileID: 6336943708259534223, guid: de8d7fd633ca41e40b7d8fb8fbe3b0e9, type: 3}
-    - target: {fileID: -2534305608707758999, guid: 2d332334198b6934bba7c3413e92d2ff, type: 3}
       propertyPath: parentProjectiles
       value: 
       objectReference: {fileID: 265445055}
-    - target: {fileID: 3767340667046387067, guid: 2d332334198b6934bba7c3413e92d2ff, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3837667066164932252, guid: 2d332334198b6934bba7c3413e92d2ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -595,18 +575,6 @@ PrefabInstance:
     - target: {fileID: 6370658006626029846, guid: 2d332334198b6934bba7c3413e92d2ff, type: 3}
       propertyPath: m_Name
       value: Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 8402967858764910684, guid: 2d332334198b6934bba7c3413e92d2ff, type: 3}
-      propertyPath: m_Size.x
-      value: 0.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 8402967858764910684, guid: 2d332334198b6934bba7c3413e92d2ff, type: 3}
-      propertyPath: m_Size.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8402967858764910684, guid: 2d332334198b6934bba7c3413e92d2ff, type: 3}
-      propertyPath: m_Offset.y
-      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

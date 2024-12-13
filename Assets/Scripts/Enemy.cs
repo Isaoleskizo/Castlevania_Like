@@ -4,23 +4,41 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    public CharacterControler player;
+    protected CharacterControler cc;
     protected float lifePoints;
+    protected float damageOnContact;
     protected float speed;
     public bool hasDetected;
-    // Start is called before the first frame update
-    void Awake()
-    {
 
-    }
+
 
     // Update is called once per frame
     void Update()
     {
         if (hasDetected) AttackPattern();
+        else NeutralPattern();
     }
-
     abstract public void InitDetection();
     abstract protected void AttackPattern();
     abstract protected void NeutralPattern();
+
+    public void LoseHP(float hp)
+    {
+        lifePoints -= hp;
+        StartCoroutine(DMGFeedback());
+    }
+
+    protected void Die()
+    {
+        //Chance de Loot
+
+        Destroy(gameObject);
+    }
+
+    protected IEnumerator DMGFeedback()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<SpriteRenderer>().enabled = true;
+    }
 }

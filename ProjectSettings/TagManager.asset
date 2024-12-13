@@ -7,7 +7,7 @@ TagManager:
   - Terrain
   - Character
   - Enemy
-  - Projectile
+  - AllyWeapon
   layers:
   - Default
   - TransparentFX
