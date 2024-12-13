@@ -6,10 +6,10 @@ using UnityEngine;
 public class CharacterControler : MonoBehaviour
 {
     [Header("Variables")]
-    private float lifePoints = 10;
+    [SerializeField] private float lifePoints = 7;
     private float lifePointsMax = 10;
 
-    private float manaPoints = 10;
+    [SerializeField] private float manaPoints = 10;
     private float manaPointsMax = 10;
 
 
@@ -78,7 +78,7 @@ public class CharacterControler : MonoBehaviour
              switch(weapon)
             {
                 case SecondaryWeapon.Dagger:
-                    UseWeapon(prefabDagger);
+                    UseWeapon(prefabDagger, new Vector3(0,0,90));
                     break;
                 case SecondaryWeapon.Axe:
                     UseWeapon(prefabAxe);
@@ -101,10 +101,13 @@ public class CharacterControler : MonoBehaviour
     }
     private void UseWeapon(GameObject prefab)
     {
+        UseWeapon(prefab, Vector3.zero);
+    }
+    private void UseWeapon(GameObject prefab, Vector3 rotation)
+    {
         int value = isLookingLeft? -1:1;
-        GameObject axe = Instantiate(prefab, new Vector3(transform.position.x + value*0.5f, transform.position.y), Quaternion.identity, parentProjectiles);
+        GameObject axe = Instantiate(prefab, new Vector3(transform.position.x + value*0.5f, transform.position.y), Quaternion.Euler(rotation), parentProjectiles);
         axe.GetComponent<ProjectileBehaviour>().SetLeft(isLookingLeft);
-
     }
 
     public bool Get_iframes()
