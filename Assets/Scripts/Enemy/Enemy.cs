@@ -46,9 +46,10 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void TryToLoot()
     {
-        int x = Random.Range(0, potentialLoot.Count+1);
+        int x = Random.Range(0, potentialLoot.Count);
         Debug.Log(x);
-        if(Random.Range(lootPercentage,100) == 99) Instantiate(potentialLoot[x], transform.position, Quaternion.identity);
+        
+        if(Random.Range(0,100) < lootPercentage) Instantiate(potentialLoot[x], transform.position, Quaternion.identity);
     }
 
 

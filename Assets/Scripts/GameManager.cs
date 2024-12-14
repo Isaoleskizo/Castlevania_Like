@@ -43,13 +43,13 @@ public class GameManager : MonoBehaviour
             int x = Random.Range(0, 3);
             if(x==0)
             {
-                GameObject enemy = Instantiate(prefabWalkEnemy,new Vector2(-10,0),Quaternion.identity);
+                GameObject enemy = Instantiate(prefabWalkEnemy,new Vector2(Random.Range(-12, -8), 0),Quaternion.identity);
                 enemy.GetComponent<Enemy>().SetLeft(false);
                 enemies.Add(enemy);
             }
             else if (x==1)
             {
-                GameObject enemy = Instantiate(prefabWalkEnemy, new Vector2(10, 0), Quaternion.identity);
+                GameObject enemy = Instantiate(prefabWalkEnemy, new Vector2(Random.Range(8, 12), 0), Quaternion.identity);
                 enemy.GetComponent<Enemy>().SetLeft(true);
                 enemies.Add(enemy);
             }

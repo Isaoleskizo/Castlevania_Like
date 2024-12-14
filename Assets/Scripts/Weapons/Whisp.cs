@@ -6,6 +6,6 @@ public class Whisp : WeaponBase
 {
     private void Start()
     {
-        damage = 1.25f;
+        damage = 2.25f;
     }
 }

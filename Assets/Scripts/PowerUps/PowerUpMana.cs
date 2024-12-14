@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerUpMana : PowerUpBase
 {
-    protected float mana = 1.0f;
+    protected float mana = 10f;
     override protected void ApplyPowerup(CharacterControler cc)
     {
         Debug.Log("+" + mana + "mana !");

@@ -214,6 +214,7 @@ public class CharacterControler : MonoBehaviour
 
     public void SwapWeapon(SecondaryWeapon x)
     {
+        GainMana(3);
         weapon = x;
         UIManager.Instance.UpdateBoard();
     }
