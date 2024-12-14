@@ -8,12 +8,10 @@ public class AxeBehaviour : ProjectileBehaviour
     private float initialXWhenShoot;
     private float initialYWhenShoot;
 
-    private Transform parent;
     // Start is called before the first frame update
     void Start()
     {
         damage = 5.0f;
-        parent = transform.parent;
         speed = 4;
         initialXWhenShoot = transform.position.x;
         initialYWhenShoot = transform.position.y;

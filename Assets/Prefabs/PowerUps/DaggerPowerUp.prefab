@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2177601608601574401}
   - component: {fileID: 144096276138423485}
   - component: {fileID: 7305850066340703060}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DaggerPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

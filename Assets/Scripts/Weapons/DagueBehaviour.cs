@@ -14,6 +14,7 @@ public class DagueBehaviour : ProjectileBehaviour
     private void FixedUpdate()
     {
         Deplacement();
+        TryDeleteDague();
     }
 
     protected override void Deplacement()
@@ -31,5 +32,10 @@ public class DagueBehaviour : ProjectileBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("pingcollision");
+    }
+
+    private void TryDeleteDague()
+    {
+        if (transform.position.x > 25) Destroy(gameObject);
     }
 }

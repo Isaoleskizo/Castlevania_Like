@@ -73,7 +73,7 @@ public class CharacterControler : MonoBehaviour
 
     private void UseSecondaryWeapon()
     {
-        if(!weaponCooldown)
+        if(!weaponCooldown && manaPoints>0)
         { 
              switch(weapon)
             {
@@ -108,6 +108,7 @@ public class CharacterControler : MonoBehaviour
         int value = isLookingLeft? -1:1;
         GameObject axe = Instantiate(prefab, new Vector3(transform.position.x + value*0.5f, transform.position.y), Quaternion.Euler(rotation), parentProjectiles);
         axe.GetComponent<ProjectileBehaviour>().SetLeft(isLookingLeft);
+        LoseMana(1);
     }
 
     public bool Get_iframes()
@@ -133,10 +134,14 @@ public class CharacterControler : MonoBehaviour
     }
     private void Attack()
     {
-        whisp.transform.localPosition = positionWeapon;
-        whisp.GetComponent<WeaponBase>().SetLeft(isLookingLeft);
-        whisp.SetActive(true);
-        StartCoroutine(ActiveTimeWeapon());
+        if(!weaponCooldown)
+        {
+            whisp.transform.localPosition = positionWeapon;
+            whisp.GetComponent<WeaponBase>().SetLeft(isLookingLeft);
+            whisp.SetActive(true);
+            StartCoroutine(ActiveTimeWeapon());
+            StartCoroutine(CooldownWeapon(0.5f));
+        }
     }
     IEnumerator ActiveTimeWeapon()
     {
@@ -153,26 +158,50 @@ public class CharacterControler : MonoBehaviour
         lifePoints -= life;
         if (lifePoints < 0) lifePoints = 0;
         StartCoroutine(Cooldown_iFrames());
+        UIManager.Instance.UpdateBoard();
     }
 
 
 
+    public float GetHPs()
+    {
+        return lifePoints;
+    }
+    public float GetMaxHPs()
+    {
+        return lifePointsMax;
+    }
+    public float GetMaxMana()
+    {
+        return manaPointsMax;
+    }
+    public float GetMana()
+    {
+        return manaPoints;
+    }
 
+    public SecondaryWeapon GetWeapon()
+    {
+        return weapon;
+    }
 
     public void GainHPs(float life)
     {
         lifePoints += life;
         if(lifePoints>lifePointsMax) lifePoints=lifePointsMax;
+        UIManager.Instance.UpdateBoard();
     }
     public void GainMana(float mana)
     {
         manaPoints += mana;
         if(manaPoints > manaPointsMax) manaPoints = manaPointsMax;
+        UIManager.Instance.UpdateBoard();
     }
     public void LoseMana(float mana)
     {
         manaPoints -= mana;
         if(manaPoints < 0) manaPoints = 0;
+        UIManager.Instance.UpdateBoard();
     }
     IEnumerator Cooldown_iFrames()
     {
@@ -186,6 +215,7 @@ public class CharacterControler : MonoBehaviour
     public void SwapWeapon(SecondaryWeapon x)
     {
         weapon = x;
+        UIManager.Instance.UpdateBoard();
     }
 
 

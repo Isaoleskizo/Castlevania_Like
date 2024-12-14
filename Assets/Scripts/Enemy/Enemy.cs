@@ -9,6 +9,8 @@ public abstract class Enemy : MonoBehaviour
     protected float damageOnContact;
     protected float speed;
     public bool hasDetected;
+    [SerializeField] protected bool isLeft;
+    [SerializeField] private int lootPercentage;
 
     public List<GameObject> potentialLoot;
 
@@ -17,10 +19,17 @@ public abstract class Enemy : MonoBehaviour
     {
         if (hasDetected) AttackPattern();
         else NeutralPattern();
+
+        if (lifePoints <= 0) Die();
     }
     abstract public void InitDetection();
     abstract protected void AttackPattern();
     abstract protected void NeutralPattern();
+
+    public void SetLeft(bool left)
+    {
+        isLeft = left;
+    }
 
     public void LoseHP(float hp)
     {
@@ -39,7 +48,7 @@ public abstract class Enemy : MonoBehaviour
     {
         int x = Random.Range(0, potentialLoot.Count+1);
         Debug.Log(x);
-        Instantiate(potentialLoot[x], transform.position, Quaternion.identity);
+        if(Random.Range(lootPercentage,100) == 99) Instantiate(potentialLoot[x], transform.position, Quaternion.identity);
     }
 
 
@@ -48,5 +57,28 @@ public abstract class Enemy : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(0.1f);
         GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("azer");
+        if (collision.gameObject.CompareTag("AllyWeapon"))
+        {
+            WeaponBase wb = collision.gameObject.GetComponent<WeaponBase>();
+            LoseHP(wb.GetDamageValue());
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+
+        if (collision.collider.CompareTag("Character"))
+        {
+            CharacterControler c = collision.gameObject.GetComponent<CharacterControler>();
+            if (!c.Get_iframes())
+            {
+                c.LoseHPs(damageOnContact);
+            }
+        }
     }
 }

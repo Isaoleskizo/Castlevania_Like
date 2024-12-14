@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4498391463472410736}
   - component: {fileID: 5781720573421255747}
   - component: {fileID: 6635524901929274111}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: manaPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

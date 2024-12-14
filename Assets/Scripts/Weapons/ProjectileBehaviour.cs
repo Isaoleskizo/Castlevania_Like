@@ -7,7 +7,6 @@ public abstract class ProjectileBehaviour : WeaponBase
 {
     protected float speed = 10.0f; 
 
-
     protected abstract void Deplacement();
 
 

@@ -127,7 +127,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -401,6 +401,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a08807e7d01504db038ba2dc797568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifePoints: 10
+  manaPoints: 10
   weapon: 1
   prefabDagger: {fileID: 6336943708259534223, guid: de8d7fd633ca41e40b7d8fb8fbe3b0e9, type: 3}
   prefabAxe: {fileID: 3407973886738307947, guid: 0cdb269ba96b8694ba8d50f86a5545d3, type: 3}
@@ -419,7 +421,7 @@ GameObject:
   - component: {fileID: 6602912178822039272}
   m_Layer: 0
   m_Name: FeetsCollider
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

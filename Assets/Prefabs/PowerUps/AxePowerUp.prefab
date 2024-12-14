@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 171551066893371997}
   - component: {fileID: 6942317989646104641}
   - component: {fileID: 8288436329682115314}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AxePowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
