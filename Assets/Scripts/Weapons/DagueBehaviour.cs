@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class DagueBehaviour : ProjectileBehaviour
 {
 
+    //INHERITANCE
     private void Start()
     {
         damage = 1.0f;

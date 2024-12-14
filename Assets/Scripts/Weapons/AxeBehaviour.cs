@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class AxeBehaviour : ProjectileBehaviour
 {
+    //INHERITANCE
     private float initialXWhenShoot;
     private float initialYWhenShoot;
 
@@ -24,6 +24,7 @@ public class AxeBehaviour : ProjectileBehaviour
         TryDeleteAxe();
     }
 
+    //POLYMORPHISM
     protected override void Deplacement()
     {
         //calcule la position actuelle de X par rapport à la fonction

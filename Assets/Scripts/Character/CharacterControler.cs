@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CharacterControler : MonoBehaviour
@@ -103,6 +102,7 @@ public class CharacterControler : MonoBehaviour
     {
         UseWeapon(prefab, Vector3.zero);
     }
+    //ABSTRACTION
     private void UseWeapon(GameObject prefab, Vector3 rotation)
     {
         int value = isLookingLeft? -1:1;
@@ -162,7 +162,7 @@ public class CharacterControler : MonoBehaviour
     }
 
 
-
+    //ENCAPSULATION
     public float GetHPs()
     {
         return lifePoints;
@@ -212,6 +212,7 @@ public class CharacterControler : MonoBehaviour
         shield.SetActive(false);
     }
 
+    //ABSTRACTION
     public void SwapWeapon(SecondaryWeapon x)
     {
         GainMana(3);

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PowerUpDagger : PowerUpBase
 {
+    //INHERITANCE
     protected override void ApplyPowerup(CharacterControler cc)
     {
         cc.SwapWeapon(CharacterControler.SecondaryWeapon.Dagger);
